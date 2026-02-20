@@ -1,5 +1,5 @@
 (function() {
-  const WIDGET_API = 'http://localhost:3000/api/chat';
+  const WIDGET_API = 'http://72.61.171.18:3002/api/chat';
   
   const styles = `
     #leadgen-widget-container * { box-sizing: border-box; }

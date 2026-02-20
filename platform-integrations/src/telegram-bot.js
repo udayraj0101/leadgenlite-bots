@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
 const token = process.env.TELEGRAM_BOT_TOKEN || '8522658409:AAEC0C_10KjDm71XxwmMA2ijIjNNAXaQrLw';
-const API_BASE = process.env.PLATFORM_API_URL || 'http://localhost:3000';
+const API_BASE = process.env.PLATFORM_API_URL || 'http://localhost:3002';
 
 const bot = new TelegramBot(token, { polling: true });
 
