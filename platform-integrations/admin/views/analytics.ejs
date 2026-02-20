@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - LeadgenLite Admin</title>
+    <%- include('partials/head') %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <%- include('partials/header', { orgName, active: 'analytics' }) %>
+    
+    <div class="container">
+        <h1>📈 Analytics</h1>
+        
+        <div class="charts-grid">
+            <div class="card">
+                <h3>Intent Distribution</h3>
+                <canvas id="intentChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Leads Timeline (7 Days)</h3>
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const intents = <%- JSON.stringify(intents) %>;
+        const timeline = <%- JSON.stringify(timeline) %>;
+        
+        // Intent Chart
+        new Chart(document.getElementById('intentChart'), {
+            type: 'doughnut',
+            data: {
+                labels: intents.map(i => i.intent),
+                datasets: [{
+                    data: intents.map(i => i.count),
+                    backgroundColor: ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a']
+                }]
+            }
+        });
+        
+        // Timeline Chart
+        new Chart(document.getElementById('timelineChart'), {
+            type: 'line',
+            data: {
+                labels: timeline.map(t => new Date(t.date).toLocaleDateString()),
+                datasets: [{
+                    label: 'Leads',
+                    data: timeline.map(t => t.count),
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

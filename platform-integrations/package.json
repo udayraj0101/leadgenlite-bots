@@ -1,0 +1,35 @@
+{
+  "name": "leadgenlite-platform",
+  "version": "1.0.0",
+  "description": "Multi-platform chatbot integration with AI agent",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "telegram": "node src/telegram-bot.js"
+  },
+  "keywords": [
+    "chatbot",
+    "ai",
+    "leadgen"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "ejs": "^4.0.1",
+    "express": "^4.18.2",
+    "express-session": "^1.19.0",
+    "geoip-lite": "^1.4.10",
+    "node-telegram-bot-api": "^0.66.0",
+    "pg": "^8.18.0",
+    "ua-parser-js": "^2.0.9",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

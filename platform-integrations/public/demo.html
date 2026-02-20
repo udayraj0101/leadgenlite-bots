@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Demo - Embed on Any Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #667eea; }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        code { color: #e83e8c; }
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 LeadgenLite Chat Widget Demo</h1>
+    
+    <p>This page demonstrates how to embed the LeadgenLite chat widget on any webpage.</p>
+    
+    <h2>📋 How to Use</h2>
+    <p>Add this single line before the closing <code>&lt;/body&gt;</code> tag on any webpage:</p>
+    
+    <div class="code-block">
+        <code>&lt;script src="http://localhost:3000/widget.js"&gt;&lt;/script&gt;</code>
+    </div>
+
+    <div class="note">
+        <strong>⚠️ Note:</strong> For production, replace <code>localhost:3000</code> with your actual domain.
+    </div>
+
+    <h2>✨ Features</h2>
+    <ul>
+        <li>Floating chat icon in bottom-right corner</li>
+        <li>Click to expand/collapse chat window</li>
+        <li>Persistent user sessions (localStorage)</li>
+        <li>Typing indicators</li>
+        <li>Smooth animations</li>
+        <li>Mobile responsive</li>
+        <li>Zero dependencies</li>
+    </ul>
+
+    <h2>🎨 Customization</h2>
+    <p>You can customize colors by editing <code>widget.js</code>:</p>
+    <ul>
+        <li>Change gradient colors in <code>background: linear-gradient(...)</code></li>
+        <li>Adjust widget position (bottom/right values)</li>
+        <li>Modify dimensions (width/height)</li>
+    </ul>
+
+    <h2>🧪 Test It</h2>
+    <p>Look at the bottom-right corner of this page! Click the chat icon to start chatting.</p>
+
+    <hr style="margin: 40px 0;">
+
+    <h2>📝 Sample Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+    <!-- WIDGET INTEGRATION - Just one line! -->
+    <script src="/widget.js"></script>
+</body>
+</html>

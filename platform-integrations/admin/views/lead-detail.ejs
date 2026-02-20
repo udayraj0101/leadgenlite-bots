@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Detail - LeadgenLite Admin</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header', { orgName, active: 'leads' }) %>
+    
+    <div class="container">
+        <a href="/admin/leads" class="btn btn-sm" style="margin-bottom: 20px;">← Back to Leads</a>
+        
+        <div class="detail-grid">
+            <div class="card">
+                <h2>Lead Information</h2>
+                <div class="info-row">
+                    <strong>Name:</strong> <%= lead.name || 'Unknown' %>
+                </div>
+                <div class="info-row">
+                    <strong>Email:</strong> <%= lead.email || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Phone:</strong> <%= lead.phone || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Company:</strong> <%= lead.company || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Platform:</strong> <span class="badge badge-<%= lead.platform %>"><%= lead.platform %></span>
+                </div>
+                <div class="info-row">
+                    <strong>Lead Score:</strong> <span class="badge badge-<%= lead.lead_score >= 70 ? 'high' : lead.lead_score >= 40 ? 'medium' : 'low' %>"><%= lead.lead_score %></span>
+                </div>
+                <div class="info-row">
+                    <strong>Intent:</strong> <%= lead.intent || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Sentiment:</strong> <%= lead.sentiment || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Urgency:</strong> <%= lead.urgency || '-' %>
+                </div>
+                <div class="info-row">
+                    <strong>Created:</strong> <%= new Date(lead.created_at).toLocaleString() %>
+                </div>
+                
+                <% if (lead.entities && Object.keys(lead.entities).length > 0) { %>
+                    <h3 style="margin-top: 20px;">Extracted Entities</h3>
+                    <% Object.entries(lead.entities).forEach(([key, value]) => { %>
+                        <div class="info-row">
+                            <strong><%= key %>:</strong> <%= value %>
+                        </div>
+                    <% }) %>
+                <% } %>
+                
+                <% if (lead.platform_data && Object.keys(lead.platform_data).length > 0) { %>
+                    <h3 style="margin-top: 20px;">Platform Data</h3>
+                    <% Object.entries(lead.platform_data).forEach(([key, value]) => { %>
+                        <div class="info-row">
+                            <strong><%= key %>:</strong> <%= typeof value === 'object' ? JSON.stringify(value) : value %>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+            
+            <div class="card">
+                <h2>Conversation History</h2>
+                <div class="conversation">
+                    <% if (conversation && conversation.length > 0) { %>
+                        <% conversation.forEach(msg => { %>
+                            <div class="message <%= msg.role %>">
+                                <strong><%= msg.role === 'user' ? 'User' : 'Assistant' %></strong>
+                                <p><%= msg.content %></p>
+                                <small><%= new Date(msg.created_at).toLocaleString() %></small>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No conversation history</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

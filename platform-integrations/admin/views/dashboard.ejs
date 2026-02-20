@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LeadgenLite Admin</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header', { orgName, active: 'dashboard' }) %>
+    
+    <div class="container">
+        <h1>📊 Dashboard</h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Leads</h3>
+                <div class="value"><%= stats.total_leads %></div>
+                <div class="sub"><%= stats.today %> today</div>
+            </div>
+            <div class="stat-card">
+                <h3>Avg Score</h3>
+                <div class="value"><%= Math.round(stats.avg_score || 0) %></div>
+                <div class="sub">Out of 100</div>
+            </div>
+            <div class="stat-card">
+                <h3>High Score</h3>
+                <div class="value"><%= stats.high_score %></div>
+                <div class="sub">Score ≥ 70</div>
+            </div>
+            <div class="stat-card">
+                <h3>Web Leads</h3>
+                <div class="value"><%= stats.web_leads %></div>
+            </div>
+            <div class="stat-card">
+                <h3>Telegram</h3>
+                <div class="value"><%= stats.telegram_leads %></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Recent Leads</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Platform</th>
+                        <th>Score</th>
+                        <th>Intent</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% recentLeads.forEach(lead => { %>
+                        <tr>
+                            <td><%= lead.name || 'Unknown' %></td>
+                            <td><%= lead.company || '-' %></td>
+                            <td><span class="badge badge-<%= lead.platform %>"><%= lead.platform %></span></td>
+                            <td><span class="badge badge-<%= lead.lead_score >= 70 ? 'high' : lead.lead_score >= 40 ? 'medium' : 'low' %>"><%= lead.lead_score %></span></td>
+                            <td><%= lead.intent || '-' %></td>
+                            <td><%= new Date(lead.created_at).toLocaleDateString() %></td>
+                            <td><a href="/admin/leads/<%= lead.id %>" class="btn btn-sm">View</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

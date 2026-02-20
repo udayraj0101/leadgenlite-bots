@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads - LeadgenLite Admin</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/header', { orgName, active: 'leads' }) %>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1>👥 All Leads (<%= leads.length %>)</h1>
+            <a href="/admin/export" class="btn btn-primary">📥 Export CSV</a>
+        </div>
+        
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                        <th>Platform</th>
+                        <th>Score</th>
+                        <th>Intent</th>
+                        <th>Sentiment</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% leads.forEach(lead => { %>
+                        <tr>
+                            <td><%= lead.name || 'Unknown' %></td>
+                            <td><%= lead.email || '-' %></td>
+                            <td><%= lead.company || '-' %></td>
+                            <td><span class="badge badge-<%= lead.platform %>"><%= lead.platform %></span></td>
+                            <td><span class="badge badge-<%= lead.lead_score >= 70 ? 'high' : lead.lead_score >= 40 ? 'medium' : 'low' %>"><%= lead.lead_score %></span></td>
+                            <td><%= lead.intent || '-' %></td>
+                            <td><%= lead.sentiment || '-' %></td>
+                            <td><%= new Date(lead.created_at).toLocaleDateString() %></td>
+                            <td><a href="/admin/leads/<%= lead.id %>" class="btn btn-sm">View</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
